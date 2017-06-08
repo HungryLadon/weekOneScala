@@ -166,5 +166,7 @@ patternMatch2(0,1)
 patternMatch2(4,0)
 patternMatch2(4,6)
 
+
+
 val time: Array[String] = java.util.TimeZone.getAvailableIDs
-print(time.splitAt('/'))
+val time2 = time.map(x=>x.split('/')).distinct
