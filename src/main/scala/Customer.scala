@@ -1,8 +1,9 @@
 /**
   * Created by Administrator on 07/06/2017.
   */
-class Customer(customerID:Int,customerFirstName:String,customerLastName:String) extends Person(customerID,customerFirstName,customerLastName,false,true ) {
+class Customer(customerFirstName:String,customerLastName:String,ownerOf:Int) extends Person(customerFirstName,customerLastName,false,true,ownerOf) {
 
 
-  override def toString:String = customerFirstName + " " + customerLastName
+  override def toString:String = customerFirstName + " " + customerLastName + " owner of " + ownerOf
+
 }

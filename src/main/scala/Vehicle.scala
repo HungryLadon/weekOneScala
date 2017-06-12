@@ -15,56 +15,46 @@
   *
   *
   */
-class Vehicle(var vehicleID:Int, var registration:String,var carType:String,var needsFix:Boolean,var fault:String ) {
+abstract class Vehicle(val registration:String,val vehicleType:String,var needsFix:Boolean,val fault:String) {
   val faultList = Map(" "->0.00,"brakes"->4.00,"oil change"->5.00,"tyre change"->6.00,"Head lights"->10.00)
+  val faultFixTime = Map(" "->0.00,"brakes"->15.00,"oil change"->20.00,"tyre change"->10.00,"Head lights"->20.00)
 
+  val id = Vehicle.nextID()
 
-
-  def getVehicleID():Int = vehicleID
-  def getRegistration():String = registration
-  def getVehicleType():String = carType
-  def getNeedsFix():Boolean = needsFix
-  def getFault():String = fault
-
-  def setCarType(carType : String){
-    if(!(carType.matches(".*\\d+.*")))
-      this.carType=carType
-    else
-      this.carType = "No Type"
+  def setNeedsFix(needFix: Boolean): Unit ={
+    this.needsFix = needFix
   }
 
-  def setNeedsFix(needsFix: Boolean): Unit ={
-    this.needsFix = needsFix
-
-  }
   def getFaults():Unit={
-    val faults = fault.split(',')
-    for(fault <-faults) {
-
-      println(fault )
-    }
+    val faults = fault.split(',').foreach(println)
   }
 
+def getTimeToFix():Double={
+    var totalTime:Double=0.00
+    val partsToFix = fault.split(',')
+    for(parts<-partsToFix){
+      totalTime+=faultFixTime(parts)
+    }
+    totalTime
+
+  }
 
   def calculateBill(): Unit ={
     isCar()
     val faults = fault.split(',')
     var totalPrices:Double = 0.00
     for(fault<-faults){
-       totalPrices += faultList(fault)
+      totalPrices += faultList(fault)
     }
     println(totalPrices)
-
   }
 
   def isCar():Unit={
-    if(carType.equals("Car")){
+    if(vehicleType.equals("Car")){
       println("Please use calculateCarBill() instead")
       System.exit(1)
     }
     else {}
-
-
   }
 
   def fixVehicle(): Unit ={
@@ -72,17 +62,20 @@ class Vehicle(var vehicleID:Int, var registration:String,var carType:String,var 
     setNeedsFix(false)
   }
 
-  override def toString = s"Vehicle($vehicleID, $registration, $carType, $needsFix, $fault)"
+  override def toString = s"Vehicle($id,$registration, $vehicleType, $needsFix, $fault)"
+
 }
-object Main{
+object Vehicle{
+  private var idSequence = 0
 
-  def  main(args: Array[String]): Unit ={
-    val ferrari = new Vehicle(1,"xyz","MotorBike",true,"brakes,tyre change,oil change")
-    println(ferrari.getVehicleType())
-    ferrari.fixVehicle()
-    println(ferrari.getNeedsFix())
-    ferrari.getFaults()
-
+  private def nextID() ={
+    idSequence+=1
+    idSequence
   }
+
+
+
+
+
 
 }

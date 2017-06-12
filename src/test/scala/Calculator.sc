@@ -1,20 +1,25 @@
 
-def Calculator(int: Int,int2: Int,int3: Int):AnyVal={
-  val list = List(int,int2,int3).sortWith(_<_)
-      println(list(0) + "*" + list(1) +"=" + list(2))
-      println(list(2) + "/" + list(1) +"=" + list(0))
-      println(list(2) + "/" + list(0) +"=" + list(1))
 
+def Calculator(int: Int,int2: Int,int3: Int):Any={
+  val list1 = List[Integer](int,int2,int3).sortWith(_<_)
+      check(list1)
+      println(list1(0) + "*" + list1(1) +"=" + list1(2))
+      println(list1(2) + "/" + list1(1) +"=" + list1(0))
+      println(list1(2) + "/" + list1(0) +"=" + list1(1))
   }
-Calculator(9,12,108)
-
-def check(int1: Int,int2: Int,int3: Int):Int={
-
-
-
-
-
+Calculator(7,14,98)
+def check(list:List[Integer]): Any = {
+  if ((list.head.toDouble*list(1).toDouble != list(2).toDouble)&&(list(2).toDouble/list(1).toDouble!=list.head.toDouble)&&
+    (list(2).toDouble/list.head.toDouble != list(1)))
+  {
+    println("Wont work")
+    System.exit(1)
+  }
+  else{}
 }
+
+
+
 
 
 

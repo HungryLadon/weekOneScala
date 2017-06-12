@@ -104,4 +104,10 @@ getCircleStats(10.00)
 /**Higher order function
   * A function whose return value is a function
   * A function with a parameter that is a function
+  * By name parameters and closures
+  *
+  *
   * */
+
+val tuple = (1,4,5,6)
+tuple._1
