@@ -170,3 +170,15 @@ patternMatch2(4,6)
 
 val time: Array[String] = java.util.TimeZone.getAvailableIDs
 val time2 = time.map(x=>x.split('/')).distinct
+
+val parts = List("Engine","Tyres","Oil Change","Head Lights","Windscreen","Heater","Brakes","Fan belt","Wiper","Brake lights","Body work","")
+var brokenParts:String = ""
+val rand = scala.util.Random
+def getParts(list: List[Any]):Unit={
+  for(i<-0 to rand.nextInt(9)){
+    brokenParts += parts(rand.nextInt(9))+","
+  }
+  println(brokenParts.toString)
+
+}
+getParts(parts)
